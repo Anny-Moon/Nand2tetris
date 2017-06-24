@@ -61,5 +61,5 @@ CHIP ALU {
     Not(in = notzr, out = zr); 
     NegComp16(in = outout, out = ng);
     
-    Mux16(a = outout, b = outout, sel = false, out = out);
+    Add16(a = outout, b = false, out = out);
 }
