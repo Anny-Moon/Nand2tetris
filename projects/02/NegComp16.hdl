@@ -1,0 +1,11 @@
+/**
+ * Check if input is negative, by checking the last bit.
+ */
+
+CHIP NegComp16 {
+    IN in[16];    // 16-bit inputs
+    OUT out;  // 1 if in < 0, 0 otherwise
+
+    PARTS:
+    DMux(in = true, sel = in[15], a = trash, b = out);
+}

@@ -50,16 +50,36 @@ CHIP ALU {
     Not16(in = yzero, out = noty);
     Mux16(a = yzero, b = noty, sel = ny, out = ynew); 
 
-    Add16(a = xnew, b = ynew, out = sum);
-    And16(a = xnew, b = ynew, out = mult);
+    Add16(a = xnew, b = newy, out = sum);
+    And16(a = xnew, b = newy, out = mult);
     
     Mux16(a = mult, b = sum, sel = f, out = preout);
     Not16(in = preout, out = notpreout);
     Mux16(a = preout, b = notpreout, sel = no, out = outout);
 
-    Or16Way(in = outout, out = notzr);
-    Not(in = notzr, out = zr); 
-    NegComp16(in = outout, out = ng);
+    Or16Way(in = outout, out = notng);
+    Not(in = notng, out = ng); 
+    NegComp16(in = outout, out = zr);
+/*    
+    Or(a = false, b = outout[1], out = ng1);
+    Or(a = out[0], b = out[1], out = ng1);
+    Or(a = ng1, b = out[2], out = ng2); 
+    Or(a = ng2, b = out[3], out = ng3); 
+    Or(a = ng3, b = out[4], out = ng4); 
+    Or(a = ng4, b = out[5], out = ng5); 
+    Or(a = ng5, b = out[6], out = ng6); 
+    Or(a = ng6, b = out[7], out = ng7); 
+    Or(a = ng7, b = out[8], out = ng8); 
+    Or(a = ng8, b = out[9], out = ng9); 
+    Or(a = ng9, b = out[10], out = ng10); 
+    Or(a = ng10, b = out[11], out = ng11); 
+    Or(a = ng11, b = out[12], out = ng12); 
+    Or(a = ng12, b = out[13], out = ng13); 
+    Or(a = ng13, b = out[14], out = ng14); 
+    Or(a = ng14, b = out[15], out = ng15);
+
+    Not(in = ng15, out = ng); 
     
-    Mux16(a = outout, b = outout, sel = false, out = out);
+    DMux(in = true, sel = outout[15], a = trash, b = zr);
+*/
 }
