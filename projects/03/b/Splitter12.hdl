@@ -1,0 +1,24 @@
+/**
+ * Split 12-bit input in 9-bit and 3-bit oututs
+ * 
+ */
+
+CHIP Splitter12 {
+    IN in[12];
+    OUT a[9], b[3];
+
+    PARTS:
+    Or(a = in[0], b = false, out = a[0]);
+    Or(a = in[1], b = false, out = a[1]);
+    Or(a = in[2], b = false, out = a[2]);
+    Or(a = in[3], b = false, out = a[3]);
+    Or(a = in[4], b = false, out = a[4]);
+    Or(a = in[5], b = false, out = a[5]);
+    Or(a = in[6], b = false, out = a[6]);
+    Or(a = in[7], b = false, out = a[7]);
+    Or(a = in[8], b = false, out = a[8]);
+    
+    Or(a = in[9], b = false, out = b[0]);
+    Or(a = in[10], b = false, out = b[1]);
+    Or(a = in[11], b = false, out = b[2]);
+}

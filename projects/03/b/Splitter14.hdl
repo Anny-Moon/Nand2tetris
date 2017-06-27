@@ -1,0 +1,26 @@
+/**
+ * Split 14-bit input in 12-bit and 2-bit oututs
+ * 
+ */
+
+CHIP Splitter14 {
+    IN in[14];
+    OUT a[12], b[2];
+
+    PARTS:
+    Or(a = in[0], b = false, out = a[0]);
+    Or(a = in[1], b = false, out = a[1]);
+    Or(a = in[2], b = false, out = a[2]);
+    Or(a = in[3], b = false, out = a[3]);
+    Or(a = in[4], b = false, out = a[4]);
+    Or(a = in[5], b = false, out = a[5]);
+    Or(a = in[6], b = false, out = a[6]);
+    Or(a = in[7], b = false, out = a[7]);
+    Or(a = in[8], b = false, out = a[8]);
+    Or(a = in[9], b = false, out = a[9]);
+    Or(a = in[10], b = false, out = a[10]);
+    Or(a = in[11], b = false, out = a[11]);
+    
+    Or(a = in[12], b = false, out = b[0]);
+    Or(a = in[13], b = false, out = b[1]);
+}

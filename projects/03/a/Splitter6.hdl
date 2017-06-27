@@ -1,0 +1,20 @@
+/**
+ * Split 6-bit input in 3-bit oututs
+ * in[6]
+ * a[3] = LSB, b[3] = MSB;
+ * 
+ */
+
+CHIP Splitter6 {
+    IN in[6];
+    OUT a[3], b[3];
+
+    PARTS:
+    Or(a = in[0], b = false, out = a[0]);
+    Or(a = in[1], b = false, out = a[1]);
+    Or(a = in[2], b = false, out = a[2]);
+
+    Or(a = in[3], b = false, out = b[0]);
+    Or(a = in[4], b = false, out = b[1]);
+    Or(a = in[5], b = false, out = b[2]);
+}
