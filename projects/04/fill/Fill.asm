@@ -17,7 +17,7 @@
     D=M
     @INFINITE_LOOP
     D;JEQ
-
+(BLACK_SCREEN)
     @1024 //number of pixels
     D=A
     @numPix
@@ -28,12 +28,12 @@
     D=A
     @tmpPosition
     M=D //set to the first pixel
-(LOOP)
+(BLACK)
     @i
     D=M //D=i
     @numPix
     D=D-M //D = i-numPix
-    @END
+    @END_BL
     D;JGT // if(i-numPixels)>0 goto END
     @tmpPosition
     A=M
@@ -42,9 +42,43 @@
     M=M+1
     @i
     M=M+1 //i++
-    @LOOP
-    0;JMP // goto LOOP
-(END)
+    
+    @KBD
+    D=M
+    @WHITE_SCREEN
+    D;JEQ
+    @BLACK
+    0;JMP // goto BLACK
+(END_BL)
+(WHITE_SCREEN)
+    @i
+    M=1
+    @SCREEN
+    D=A
+    @tmpPosition
+    M=D //set to the first pixel
+(WHITE)
+    @i
+    D=M //D=i
+    @numPix
+    D=D-M //D = i-numPix
+    @END_WH
+    D;JGT // if(i-numPixels)>0 goto END
+    @tmpPosition
+    A=M
+    M=0 //paint pixel black
+    @tmpPosition
+    M=M+1
+    @i
+    M=M+1 //i++
+    
+    @KBD
+    D=M
+    @BLACK_SCREEN
+    D;JNE
+    @WHITE
+    0;JMP // goto WHITE
+(END_WH)
 
 @INFINITE_LOOP
 0;JMP
